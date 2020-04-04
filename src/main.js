@@ -1,3 +1,4 @@
+'use strict';
 const FILMS_NUM = 5;
 
 const EXTRA_FILMS_NUM = 2;
@@ -46,7 +47,7 @@ const createFilmsBoard = () => {
   );
 };
 
-const createFilmsExtrasBoard = props => {
+const createFilmsExtrasBoard = (props) => {
   const {title, id} = props;
   return (
     `<section class="films-list--extra" id="${id}">
@@ -84,7 +85,7 @@ const createShowMoreBtn = () => {
 
 
 const createFooterStatistics = () => {
-  return `<p>130 291 movies inside</p>`
+  return `<p>130 291 movies inside</p>`;
 };
 
 const createFilmDetailsPopup = () => {
@@ -210,49 +211,49 @@ const createFilmDetailsPopup = () => {
   );
 };
 
-const render = (container, template, place) => {
+const render = (container, template, place = `beforeEnd`) => {
   container.insertAdjacentHTML(place, template);
 };
 
-const siteHeaderElement = document.querySelector('.header');
-render(siteHeaderElement, createUserRank(), 'beforeEnd');
+const siteHeaderElement = document.querySelector(`.header`);
+render(siteHeaderElement, createUserRank());
 
-const siteMainElement = document.querySelector('.main');
-render(siteMainElement, createMainNavigation(), 'afterBegin');
-render(siteMainElement, createSortList(), 'beforeEnd');
-render(siteMainElement, createFilmsBoard(), 'beforeEnd');
+const siteMainElement = document.querySelector(`.main`);
+render(siteMainElement, createMainNavigation(), `afterBegin`);
+render(siteMainElement, createSortList());
+render(siteMainElement, createFilmsBoard());
 
-const siteFilmsBoard = siteMainElement.querySelector('.films');
-const siteFilmsContainer = siteFilmsBoard.querySelector('.films-list__container');
+const siteFilmsBoard = siteMainElement.querySelector(`.films`);
+const siteFilmsContainer = siteFilmsBoard.querySelector(`.films-list__container`);
 
 for (let i = 0; i < FILMS_NUM; i++) {
-  render(siteFilmsContainer, createFilmCard(), 'beforeEnd');
-};
+  render(siteFilmsContainer, createFilmCard());
+}
 
-render(siteFilmsContainer, createShowMoreBtn(), 'afterEnd');
+render(siteFilmsContainer, createShowMoreBtn(), `afterEnd`);
 
 const extraFilmBoards = [
   {
-    title: 'Top rated',
-    id: 'top-rated'
+    title: `Top rated`,
+    id: `top-rated`
   },
   {
-    title: 'Most commented',
-    id: 'most-commented'
+    title: `Most commented`,
+    id: `most-commented`
   },
 ];
 
-Array.prototype.forEach.call(extraFilmBoards, board => {
-  render(siteFilmsBoard, createFilmsExtrasBoard(board), 'beforeEnd');
+Array.prototype.forEach.call(extraFilmBoards, (board)=> {
+  render(siteFilmsBoard, createFilmsExtrasBoard(board));
 
   for (let i = 0; i < EXTRA_FILMS_NUM; i++) {
     let siteFilmsExtrasContainer = siteFilmsBoard.querySelector(`#${board.id} .films-list__container`);
-    render(siteFilmsExtrasContainer, createFilmCard(), 'beforeEnd');
-  };
+    render(siteFilmsExtrasContainer, createFilmCard());
+  }
 
 });
 
-const siteFooterElement = document.querySelector('.footer');
-const siteFooterStatistics = siteFooterElement.querySelector('.footer__statistics');
-render(siteFooterStatistics, createFooterStatistics(), 'afterBegin');
-render(siteFooterElement, createFilmDetailsPopup(), 'afterEnd');
+const siteFooterElement = document.querySelector(`.footer`);
+const siteFooterStatistics = siteFooterElement.querySelector(`.footer__statistics`);
+render(siteFooterStatistics, createFooterStatistics(), `afterBegin`);
+render(siteFooterElement, createFilmDetailsPopup(), `afterEnd`);
