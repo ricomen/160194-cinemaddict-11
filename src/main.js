@@ -47,8 +47,7 @@ const createFilmsBoard = () => {
   );
 };
 
-const createFilmsExtrasBoard = (props) => {
-  const {title, id} = props;
+const createFilmsExtrasBoard = ({title, id}) => {
   return (
     `<section class="films-list--extra" id="${id}">
       <h2 class="films-list__title">${title}</h2>
