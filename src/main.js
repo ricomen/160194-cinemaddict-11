@@ -1,5 +1,5 @@
 import {createUserRank} from './components/userRank.js';
-import {createMainNavigation} from './components/mainNavigation.js';
+import {createFilter} from './components/filter.js';
 import {createSortList} from './components/sortList.js';
 import {createFilmsBoard} from './components/filmsBoard.js';
 import {createFilmsExtraBoard} from './components/filmsExtraBoard.js';
@@ -20,7 +20,7 @@ const siteHeaderElement = document.querySelector(`.header`);
 render(siteHeaderElement, createUserRank());
 
 const siteMainElement = document.querySelector(`.main`);
-render(siteMainElement, createMainNavigation(), `afterBegin`);
+render(siteMainElement, createFilter(), `afterBegin`);
 render(siteMainElement, createSortList());
 render(siteMainElement, createFilmsBoard());
 
@@ -57,4 +57,4 @@ Array.prototype.forEach.call(extraFilmBoards, (board)=> {
 const siteFooterElement = document.querySelector(`.footer`);
 const siteFooterStatistics = siteFooterElement.querySelector(`.footer__statistics`);
 render(siteFooterStatistics, createFooterStatistics(), `afterBegin`);
-render(siteFooterElement, createFilmDetailsPopup(), `afterEnd`);
+// render(siteFooterElement, createFilmDetailsPopup(), `afterEnd`);
